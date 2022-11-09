@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class LogicTest {
 
     @Test
-    public void whenMoveThenFigureNotFoundException()  {
+    public void whenMoveThenFigureNotFoundException() {
         Logic logic = new Logic();
         FigureNotFoundException exception = assertThrows(FigureNotFoundException.class, () -> {
             logic.move(Cell.C1, Cell.H6);

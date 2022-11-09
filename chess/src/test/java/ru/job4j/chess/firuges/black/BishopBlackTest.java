@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BishopBlackTest {
 
     @Test
-    public void whePositionIsCorrect()  {
+    public void whePositionIsCorrect() {
         BishopBlack bishop = new BishopBlack(Cell.A3);
         assertThat(bishop.position(), is(Cell.A3));
     }
