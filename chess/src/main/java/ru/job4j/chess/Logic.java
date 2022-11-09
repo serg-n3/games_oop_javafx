@@ -8,7 +8,7 @@ public final class Logic {
     private final Figure[] figures = new Figure[32];
     private int index = 0;
 
-    public void add(Figure figure) {
+    public void add(Figure figure)  {
         figures[index++] = figure;
     }
 
