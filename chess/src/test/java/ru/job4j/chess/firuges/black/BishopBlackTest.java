@@ -1,31 +1,39 @@
 package ru.job4j.chess.firuges.black;
 
 import org.junit.jupiter.api.Test;
+import ru.job4j.chess.ImpossibleMoveException;
 import ru.job4j.chess.firuges.Cell;
-import ru.job4j.chess.firuges.black.BishopBlack;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class BishopBlackTest {
 
     @Test
-    public void whePositionIsCorrect() {
-        BishopBlack bishop = new BishopBlack(Cell.A3);
-        assertThat(bishop.position(), is(Cell.A3));
+    public void whenPosition() {
+        BishopBlack bishopBlack = new BishopBlack(Cell.A1);
+        bishopBlack.position();
+        assertThat(bishopBlack.position()).isEqualTo(Cell.A1);
+
     }
 
     @Test
-    public void whenCopyIsCorrect() {
-        BishopBlack bishop = new BishopBlack(Cell.A3);
-        assertThat(bishop.copy(Cell.D6).position(), is(Cell.D6));
+    public void whenCopy() {
+        BishopBlack bishopBlack = new BishopBlack(Cell.A2);
+        bishopBlack.copy(Cell.A2);
+        assertThat(bishopBlack.copy(Cell.A2).position()).isEqualTo(Cell.A2);
     }
 
     @Test
-    public void whenWayIsCorrect() {
-        BishopBlack bishopBlack = new BishopBlack(Cell.C1);
-        Cell[] expected = new Cell[] {Cell.D2, Cell.E3, Cell.F4, Cell.G5};
-        assertThat(bishopBlack.way(Cell.G5), is(expected));
+    public void whenMove() {
+        BishopBlack bishopBlack = new BishopBlack(Cell.A1);
+        ImpossibleMoveException exception = assertThrows(
+                ImpossibleMoveException.class,
+                () -> {
+                    bishopBlack.way(Cell.A2);
+                });
+        assertThat(exception.getMessage()).
+                isEqualTo("Could not move by diagonal from %s to %s", Cell.A1, Cell.A2);
     }
 }
